@@ -16,4 +16,4 @@
 #
 
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-org.apache.shenyu.springboot.plugin.aroud2.log.Around2LogPluginConfiguration
+org.apache.shenyu.springboot.plugin.simple.SimplePluginConfiguration

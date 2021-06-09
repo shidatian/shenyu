@@ -15,4 +15,4 @@
 # limitations under the License.
 #
 
-provides: shenyu-spring-boot-starter-plugin-around2-log
+provides: shenyu-spring-boot-starter-plugin-simple

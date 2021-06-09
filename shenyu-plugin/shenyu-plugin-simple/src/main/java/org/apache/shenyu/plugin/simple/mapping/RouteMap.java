@@ -1,4 +1,4 @@
-package org.apache.shenyu.plugin.around2.log.mapping;
+package org.apache.shenyu.plugin.simple.mapping;
 
 import java.util.HashMap;
 import java.util.Map;

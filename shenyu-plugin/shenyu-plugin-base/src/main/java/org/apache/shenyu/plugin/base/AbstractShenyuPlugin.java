@@ -64,6 +64,7 @@ public abstract class AbstractShenyuPlugin implements ShenyuPlugin {
     @Override
     public Mono<Void> execute(final ServerWebExchange exchange, final ShenyuPluginChain chain) {
         String pluginName = named();
+        //log.info("################################pluginName:"+pluginName);
         PluginData pluginData = BaseDataCache.getInstance().obtainPluginData(pluginName);
         if (pluginData != null && pluginData.getEnabled()) {
             final Collection<SelectorData> selectors = BaseDataCache.getInstance().obtainSelectorData(pluginName);

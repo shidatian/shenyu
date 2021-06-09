@@ -25,7 +25,7 @@ import lombok.Setter;
 /**
  * Governance center configuration.
  */
-@Getter
+@Getter 
 @Setter
 @RequiredArgsConstructor
 public final class ShenyuRegisterCenterConfig {

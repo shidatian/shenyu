@@ -67,6 +67,11 @@ public class ShenyuConfiguration {
     @Bean("webHandler")
     public ShenyuWebHandler shenyuWebHandler(final ObjectProvider<List<ShenyuPlugin>> plugins) {
         List<ShenyuPlugin> pluginList = plugins.getIfAvailable(Collections::emptyList);
+        /*log.info("########################################"+pluginList.size());
+        for (ShenyuPlugin plugin:pluginList) {
+            log.info(plugin.getClass().getName()+"########################################"+plugin.named());
+        }*/
+
         List<ShenyuPlugin> shenyuPlugins = pluginList.stream()
                 .sorted(Comparator.comparingInt(ShenyuPlugin::getOrder)).collect(Collectors.toList());
         shenyuPlugins.forEach(shenyuPlugin -> log.info("load plugin:[{}] [{}]", shenyuPlugin.named(), shenyuPlugin.getClass().getName()));

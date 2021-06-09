@@ -34,6 +34,16 @@ import reactor.netty.tcp.TcpServer;
 public class ShenyuNettyWebServerFactory {
 
     /**
+     * Netty tcp config.
+     *
+     * @return the netty tcp config
+     */
+    @Bean
+    public NettyTcpConfig nettyTcpConfig() {
+        return new NettyTcpConfig();
+    }
+
+    /**
      * Netty reactive web server factory netty reactive web server factory.
      *
      * @return the netty reactive web server factory
@@ -44,16 +54,6 @@ public class ShenyuNettyWebServerFactory {
         NettyTcpConfig nettyTcpConfig = nettyTcpConfig();
         webServerFactory.addServerCustomizers(new EventLoopNettyCustomizer(nettyTcpConfig));
         return webServerFactory;
-    }
-    
-    /**
-     * Netty tcp config.
-     *
-     * @return the netty tcp config
-     */
-    @Bean
-    public NettyTcpConfig nettyTcpConfig() {
-        return new NettyTcpConfig();
     }
 
     private static class EventLoopNettyCustomizer implements NettyServerCustomizer {

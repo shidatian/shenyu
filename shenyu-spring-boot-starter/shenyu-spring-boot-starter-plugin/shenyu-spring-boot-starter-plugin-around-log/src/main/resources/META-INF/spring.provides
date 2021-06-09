@@ -15,4 +15,4 @@
 # limitations under the License.
 #
 
-provides: shenyu-spring-boot-starter-plugin-divide
+provides: shenyu-spring-boot-starter-plugin-around-log

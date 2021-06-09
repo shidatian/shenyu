@@ -1,3 +1,5 @@
+package org.apache.shenyu.springboot.plugin.aroud.log;
+
 import org.apache.shenyu.plugin.api.ShenyuPlugin;
 import org.apache.shenyu.plugin.around.log.AroundLogPlugin;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;

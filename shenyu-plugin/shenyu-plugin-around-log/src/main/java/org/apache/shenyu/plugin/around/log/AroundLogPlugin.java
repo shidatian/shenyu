@@ -1,11 +1,13 @@
+package org.apache.shenyu.plugin.around.log;
+
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shenyu.common.enums.PluginEnum;
 import org.apache.shenyu.plugin.api.ShenyuPlugin;
 import org.apache.shenyu.plugin.api.ShenyuPluginChain;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-@Component
 @Slf4j
 public class AroundLogPlugin implements ShenyuPlugin {
     @Override
@@ -17,19 +19,19 @@ public class AroundLogPlugin implements ShenyuPlugin {
         return chain.execute(exchange)
                 .then(Mono.defer(() -> {
                     Long startTime = exchange.getAttribute("START_TIME");
-                    log.info("------------------AroundLogPlugin end. Total execution time: {} ms", System.currentTimeMillis() - startTime);
+                    log.info("------------------org.apache.shenyu.plugin.around.log.AroundLogPlugin end. Total execution time: {} ms", System.currentTimeMillis() - startTime);
                     return Mono.empty();
                 }));
     }
 
     @Override
     public int getOrder() {
-        return 0;
+        return PluginEnum.AROUNDLOG.getCode();
     }
 
     @Override
     public String named() {
-        return "aroundLog";
+        return PluginEnum.AROUNDLOG.getName();
     }
 
     @Override

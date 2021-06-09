@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.apache.shenyu</groupId>
         <artifactId>shenyu</artifactId>
-        <version>2.3.1-SNAPSHOT</version>
+        <version>2.3.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -54,5 +54,7 @@
         <module>shenyu-plugin-motan</module>
         <module>shenyu-plugin-logging</module>
         <module>shenyu-plugin-jwt</module>
+        <module>shenyu-plugin-around-log</module>
+        <module>shenyu-plugin-simple</module>
     </modules>
 </project>

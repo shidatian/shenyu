@@ -54,7 +54,7 @@ public class OrderController {
      * @param id the id
      * @return the order dto
      */
-    @GetMapping("/findById")
+    @RequestMapping("/findById")
     @ShenyuSpringMvcClient(path = "/findById", desc = "Find by id")
     public OrderDTO findById(@RequestParam("id") final String id) {
         OrderDTO orderDTO = new OrderDTO();

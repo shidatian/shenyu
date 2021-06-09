@@ -1,4 +1,4 @@
-package org.apache.shenyu.springboot.plugin.aroud2.log;
+package org.apache.shenyu.springboot.plugin.simple;
 
 import org.apache.shenyu.plugin.api.ShenyuPlugin;
 import org.apache.shenyu.plugin.simple.SimplePlugin;
@@ -16,7 +16,7 @@ public class SimplePluginConfiguration {
      * @return the soul plugin
      */
     @Bean
-    public ShenyuPlugin around2LogPlugin() {
+    public ShenyuPlugin simplePlugin() {
         return new SimplePlugin();
     }
 }

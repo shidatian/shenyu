@@ -100,6 +100,7 @@ public class WebClientPlugin implements ShenyuPlugin {
                                          final long timeout,
                                          final int retryTimes,
                                          final ShenyuPluginChain chain) {
+        log.info("#################### handleRequestBody #####################");
         return requestBodySpec.headers(httpHeaders -> {
             httpHeaders.addAll(exchange.getRequest().getHeaders());
             httpHeaders.remove(HttpHeaders.HOST);

@@ -143,7 +143,17 @@ public enum PluginEnum {
     /**
      * Jwt plugin enum.
      */
-    JWT(9, 0, "jwt");
+    JWT(9, 0, "jwt"),
+
+    /**
+     * AROUNDLOG plugin enum.
+     */
+    AROUNDLOG(0, 0, "aroundLog"),
+
+    /**
+     * AROUNDLOG plugin enum.
+     */
+    SIMPLE(50, 0, "simple");
 
     private final int code;
 

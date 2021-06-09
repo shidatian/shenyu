@@ -9,6 +9,7 @@ import org.apache.shenyu.common.enums.PluginEnum;
 import org.apache.shenyu.common.enums.RpcTypeEnum;
 import org.apache.shenyu.plugin.api.ShenyuPluginChain;
 import org.apache.shenyu.plugin.api.context.ShenyuContext;
+import org.apache.shenyu.plugin.base.AbstractShenyuPlugin;
 import org.apache.shenyu.plugin.simple.mapping.RouteMap;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferUtils;
@@ -16,7 +17,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpRequestDecorator;
 import org.springframework.web.server.ServerWebExchange;
-import org.apache.shenyu.plugin.base.AbstractShenyuPlugin;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -24,16 +24,16 @@ import java.io.UnsupportedEncodingException;
 import java.util.Objects;
 
 @Slf4j
-public class SimplePlugin extends AbstractShenyuPlugin {
+public class SimplePlugin_bak extends AbstractShenyuPlugin {
 
     @Override
     public int getOrder() {
-        return PluginEnum.AROUND2LOG.getCode();
+        return PluginEnum.SIMPLE.getCode();
     }
 
     @Override
     public String named() {
-        return PluginEnum.AROUND2LOG.getName();
+        return PluginEnum.SIMPLE.getName();
     }
 
     @Override

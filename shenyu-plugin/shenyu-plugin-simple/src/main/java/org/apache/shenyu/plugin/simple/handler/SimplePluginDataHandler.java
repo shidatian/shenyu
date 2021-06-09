@@ -16,7 +16,7 @@ import java.util.Optional;
 /**
  * The type Divide plugin data handler.
  */
-public class Around2LogPluginDataHandler implements PluginDataHandler {
+public class SimplePluginDataHandler implements PluginDataHandler {
 
     @Override
     public void handlerSelector(final SelectorData selectorData) {
