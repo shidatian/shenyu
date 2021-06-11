@@ -10,7 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>shenyu-plugin-simple</artifactId>
-
     <dependencies>
         <dependency>
             <groupId>org.apache.shenyu</groupId>
@@ -42,5 +41,13 @@
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.7.1</version>
         </dependency>
+
+        <!--20210611 simpleroute 开始-->
+        <dependency>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson</artifactId>
+            <version>3.14.0</version>
+        </dependency>
+        <!--20210611 simpleroute 结束-->
     </dependencies>
 </project>

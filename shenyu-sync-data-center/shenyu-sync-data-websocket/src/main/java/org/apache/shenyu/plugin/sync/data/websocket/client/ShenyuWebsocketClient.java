@@ -80,7 +80,6 @@ public final class ShenyuWebsocketClient extends WebSocketClient {
     
     @SuppressWarnings("ALL")
     private void handleResult(final String result) {
-        log.info("#############result##################"+result);
         WebsocketData websocketData = GsonUtils.getInstance().fromJson(result, WebsocketData.class);
         ConfigGroupEnum groupEnum = ConfigGroupEnum.acquireByName(websocketData.getGroupType());
         String eventType = websocketData.getEventType();

@@ -34,6 +34,7 @@ import org.apache.shenyu.common.dto.WebsocketData;
 import org.apache.shenyu.common.enums.ConfigGroupEnum;
 import org.apache.shenyu.common.enums.DataEventTypeEnum;
 import org.apache.shenyu.common.utils.GsonUtils;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,6 +51,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/simpleroute")
 public class SimpleRouteController {
+
+    @Autowired
+    private RedissonClient redissonClient;
 
     private final SimpleRouteService simpleRouteService;
 
@@ -103,7 +107,7 @@ public class SimpleRouteController {
         SimpleRouteLoader.addMethodRoute(key,value);
 
         //bootstrap网关的SimpleRouteMap.methodRoute添加路由信息
-        List list = new ArrayList<>();
+        /*List list = new ArrayList<>();
         JSONObject json = new JSONObject();
         json.put(key,value);
         list.add(json);
@@ -111,7 +115,10 @@ public class SimpleRouteController {
         websocketData.setGroupType(ConfigGroupEnum.SIMPLE_ROUTE.name());
         websocketData.setEventType("ADD");
         websocketData.setData(list);
-        WebsocketCollector.send(GsonUtils.getInstance().toJson(websocketData), DataEventTypeEnum.CREATE);
+        WebsocketCollector.send(GsonUtils.getInstance().toJson(websocketData), DataEventTypeEnum.CREATE);*/
+
+        //添加路由信息至redis
+        redissonClient.getMap("route").put(key,value);
 
         return ShenyuAdminResult.success(ShenyuResultMessage.CREATE_SUCCESS, createCount);
     }

@@ -7,9 +7,10 @@ import org.apache.shenyu.common.dto.RuleData;
 import org.apache.shenyu.common.dto.SelectorData;
 import org.apache.shenyu.common.enums.PluginEnum;
 import org.apache.shenyu.common.enums.RpcTypeEnum;
-import org.apache.shenyu.common.map.SimpleRouteMap;
 import org.apache.shenyu.plugin.api.ShenyuPluginChain;
 import org.apache.shenyu.plugin.api.context.ShenyuContext;
+import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.buffer.DataBufferUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.reactive.ServerHttpRequest;
@@ -19,9 +20,13 @@ import reactor.core.publisher.Mono;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Objects;
+import java.util.Optional;
 
 @Slf4j
 public class SimplePlugin extends AbstractShenyuPlugin {
+
+    @Autowired
+    private RedissonClient redissonClient;
 
     @Override
     public int getOrder() {
@@ -65,8 +70,10 @@ public class SimplePlugin extends AbstractShenyuPlugin {
                                     method += ":"+deptId;
                                 }
                                 log.info("################################method:"+method);
-                                String realURL = SimpleRouteMap.methodRoute.get(method);//通过请求方法获取对应路由
-                                if(realURL!=null){
+                                //String realURL = SimpleRouteMap.methodRoute.get(method);//通过请求方法获取对应路由
+                                Object urlObject = redissonClient.getMap("route").get(method); //从redis中取路由信息
+                                String realURL = Optional.ofNullable(urlObject).map(o -> o.toString()).orElse(null);
+                                if(realURL!= null){
                                     String id = jsonObject.getString("id");
                                     realURL += "?id="+id;
                                 }

@@ -91,7 +91,7 @@ public class WebsocketCollector {
             try {
                 ThreadLocalUtil.put(SESSION_KEY, session);
                 SpringBeanUtils.getInstance().getBean(SyncDataService.class).syncAll(DataEventTypeEnum.MYSELF);
-                SimpleRouteLoader.methodRoute.forEach((key,value) -> {
+                /*SimpleRouteLoader.methodRoute.forEach((key,value) -> {
                     List list = new ArrayList<>();
                     JSONObject json = new JSONObject();
                     json.put(key,value);
@@ -101,7 +101,7 @@ public class WebsocketCollector {
                     websocketData.setEventType("INIT");
                     websocketData.setData(list);
                     WebsocketCollector.sendMessageBySession(session, GsonUtils.getInstance().toJson(websocketData));
-                });
+                });*/
             } finally {
                 ThreadLocalUtil.clear();
             }

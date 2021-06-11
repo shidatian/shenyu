@@ -47,8 +47,6 @@ public class SimpleRouteDataHandler implements DataHandler{
 
     @Override
     public void handle(final String json, final String eventType) {
-        log.info("############### eventType "+eventType);
-        log.info("############### json "+json);
         if("INIT".equals(eventType)){
             doRefresh(json);
         }else if("ADD".equals(eventType)){
