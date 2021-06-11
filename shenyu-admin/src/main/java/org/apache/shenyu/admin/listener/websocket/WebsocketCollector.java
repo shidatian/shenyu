@@ -18,12 +18,17 @@
 package org.apache.shenyu.admin.listener.websocket;
 
 import lombok.extern.slf4j.Slf4j;
+import net.minidev.json.JSONObject;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shenyu.admin.service.SyncDataService;
+import org.apache.shenyu.admin.service.init.SimpleRouteLoader;
 import org.apache.shenyu.admin.spring.SpringBeanUtils;
 import org.apache.shenyu.admin.utils.ThreadLocalUtil;
+import org.apache.shenyu.common.dto.WebsocketData;
+import org.apache.shenyu.common.enums.ConfigGroupEnum;
 import org.apache.shenyu.common.enums.DataEventTypeEnum;
+import org.apache.shenyu.common.utils.GsonUtils;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -32,6 +37,8 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -84,6 +91,17 @@ public class WebsocketCollector {
             try {
                 ThreadLocalUtil.put(SESSION_KEY, session);
                 SpringBeanUtils.getInstance().getBean(SyncDataService.class).syncAll(DataEventTypeEnum.MYSELF);
+                SimpleRouteLoader.methodRoute.forEach((key,value) -> {
+                    List list = new ArrayList<>();
+                    JSONObject json = new JSONObject();
+                    json.put(key,value);
+                    list.add(json);
+                    WebsocketData websocketData = new WebsocketData();
+                    websocketData.setGroupType(ConfigGroupEnum.SIMPLE_ROUTE.name());
+                    websocketData.setEventType("INIT");
+                    websocketData.setData(list);
+                    WebsocketCollector.sendMessageBySession(session, GsonUtils.getInstance().toJson(websocketData));
+                });
             } finally {
                 ThreadLocalUtil.clear();
             }
@@ -127,6 +145,8 @@ public class WebsocketCollector {
                 Session session = (Session) ThreadLocalUtil.get(SESSION_KEY);
                 if (session != null) {
                     sendMessageBySession(session, message);
+                }else{
+                    log.info("now Session is null");
                 }
             } else {
                 SESSION_SET.forEach(session -> sendMessageBySession(session, message));

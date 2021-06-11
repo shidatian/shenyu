@@ -250,6 +250,19 @@ CREATE TABLE IF NOT EXISTS `data_permission` (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='data permission table';
 
+-- ----------------------------
+-- Table structure for simple_route
+-- ----------------------------
+CREATE TABLE IF NOT EXISTS `simple_route` (
+    `id` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'primary key id',
+    `mehtod` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'method desc',
+    `dep_id` varchar(128) COLLATE utf8mb4_unicode_ci COMMENT 'dempartment primary key id',
+    `url` varchar(256) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'route url',
+    `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'create time',
+    `date_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'update time',
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC COMMENT='simple_route table';
+
 /*shenyu dict*/
 INSERT IGNORE INTO `shenyu_dict` (`id`, `type`,`dict_code`, `dict_name`, `dict_value`, `desc`, `sort`, `enabled`, `date_created`, `date_updated`) VALUES ('1','degradeRuleGrade','DEGRADE_GRADE_RT','slow call ratio','0','degrade type-slow call ratio',1,1,'2020-11-18 14:39:56','2020-11-20 15:43:43');
 INSERT IGNORE INTO `shenyu_dict` (`id`, `type`,`dict_code`, `dict_name`, `dict_value`, `desc`, `sort`, `enabled`, `date_created`, `date_updated`) VALUES ('2','degradeRuleGrade','DEGRADE_GRADE_EXCEPTION_RATIO','exception ratio','1','degrade type-abnormal ratio',0,1,'2020-11-18 16:42:34','2020-11-20 15:42:58');
@@ -296,6 +309,7 @@ INSERT IGNORE INTO `plugin` (`id`, `name`, `role`, `enabled`, `date_created`, `d
 INSERT IGNORE INTO `plugin` (`id`, `name`, `role`,`config`, `enabled`, `date_created`, `date_updated`) VALUES ('17', 'motan', '1','{"register":"127.0.0.1:2181"}','0', '2020-11-09 01:19:10', '2020-11-09 01:19:10');
 INSERT IGNORE INTO `plugin` (`id`, `name`, `role`, `enabled`, `date_created`, `date_updated`) VALUES ('18', 'logging', '1', '0', '2021-04-29 13:37:35', '2021-04-29 13:37:35');
 INSERT IGNORE INTO `plugin`(`id`, `name`, `role`, `config`, `enabled`, `date_created`, `date_updated`) VALUES ('19', 'jwt', '1', '{"secretKey":"key","filterPath":[]}', '0', '2021-05-24 17:58:37', '2021-05-25 15:38:04');
+INSERT IGNORE INTO `plugin`(`id`, `name`, `role`, `config`, `enabled`, `date_created`, `date_updated`) VALUES ('20', 'simple', '1', '', '1', '2021-06-09 09:29:17', '2021-06-09 09:29:17');
 
 /**default admin user**/
 INSERT IGNORE INTO `dashboard_user` (`id`, `user_name`, `password`, `role`, `enabled`, `date_created`, `date_updated`) VALUES ('1','admin','jHcpKkiDbbQh7W7hh8yQSA==', '1', '1', '2018-06-23 15:12:22', '2018-06-23 15:12:23');

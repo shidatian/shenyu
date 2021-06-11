@@ -22,10 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shenyu.common.concurrent.ShenyuThreadFactory;
 import org.apache.shenyu.plugin.sync.data.websocket.client.ShenyuWebsocketClient;
 import org.apache.shenyu.plugin.sync.data.websocket.config.WebsocketConfig;
-import org.apache.shenyu.sync.data.api.AuthDataSubscriber;
-import org.apache.shenyu.sync.data.api.MetaDataSubscriber;
-import org.apache.shenyu.sync.data.api.PluginDataSubscriber;
-import org.apache.shenyu.sync.data.api.SyncDataService;
+import org.apache.shenyu.sync.data.api.*;
 import org.java_websocket.client.WebSocketClient;
 
 import java.net.URI;

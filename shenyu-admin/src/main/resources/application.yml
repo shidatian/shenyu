@@ -86,7 +86,7 @@ shenyu:
   jwt:
     key: 2095132720951327
   shiro:
-    white-list: /,/favicon.*,/static/**,/index**,/plugin,/platform/**,/websocket,/configs/**,/shenyu-client/**,/error,/actuator/health
+    white-list: /,/favicon.*,/static/**,/index**,/plugin,/platform/**,/websocket,/configs/**,/shenyu-client/**,/error,/actuator/health,/simpleroute,/simpleroute/*
   swagger:
      enabled: true
 

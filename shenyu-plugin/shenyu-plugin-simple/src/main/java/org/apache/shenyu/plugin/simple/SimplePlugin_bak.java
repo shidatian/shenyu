@@ -7,10 +7,10 @@ import org.apache.shenyu.common.dto.RuleData;
 import org.apache.shenyu.common.dto.SelectorData;
 import org.apache.shenyu.common.enums.PluginEnum;
 import org.apache.shenyu.common.enums.RpcTypeEnum;
+import org.apache.shenyu.common.map.SimpleRouteMap;
 import org.apache.shenyu.plugin.api.ShenyuPluginChain;
 import org.apache.shenyu.plugin.api.context.ShenyuContext;
 import org.apache.shenyu.plugin.base.AbstractShenyuPlugin;
-import org.apache.shenyu.plugin.simple.mapping.RouteMap;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.core.io.buffer.DataBufferUtils;
 import org.springframework.http.HttpHeaders;
@@ -95,9 +95,11 @@ public class SimplePlugin_bak extends AbstractShenyuPlugin {
                             if(jsonObject != null){
                                 String method = jsonObject.getString("method");
                                 log.info("################################method:"+method);
-                                String realURL = RouteMap.methodRoute.get(method);//通过请求方法获取对应路由
-                                String id = jsonObject.getString("id");
-                                realURL += "?id="+id;
+                                String realURL = SimpleRouteMap.methodRoute.get(method);//通过请求方法获取对应路由
+                                if(realURL!=null){
+                                    String id = jsonObject.getString("id");
+                                    realURL += "?id="+id;
+                                }
                                 log.info("################################realURL:"+realURL);
                                 exchange.getAttributes().put(Constants.HTTP_URL, realURL);
                             }else{

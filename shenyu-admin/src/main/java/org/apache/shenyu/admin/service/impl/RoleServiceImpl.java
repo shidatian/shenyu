@@ -17,6 +17,7 @@
 
 package org.apache.shenyu.admin.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shenyu.admin.mapper.PermissionMapper;
@@ -51,6 +52,7 @@ import java.util.stream.Collectors;
 /**
  * RoleServiceImpl.
  */
+@Slf4j
 @Service("roleService")
 public class RoleServiceImpl implements RoleService {
 

@@ -49,6 +49,11 @@ public enum ConfigGroupEnum {
     SELECTOR,
 
     /**
+     * SIMPLE_ROUTE config group enum.
+     */
+    SIMPLE_ROUTE,
+
+    /**
      * Meta data config group enum.
      */
     META_DATA;
